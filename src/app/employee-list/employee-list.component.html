@@ -1,0 +1,45 @@
+<div class="container">
+    <div>
+        <div class="form-group col-md-6 inline">
+            <input [(ngModel)]="searchTerm" (ngModelChange)="filterEmployees()" type="text" class="form-control" id="search" name="search" placeholder="Search by any field">
+        </div>
+    </div>
+    <br><br>
+    <div>
+        <table style="margin-bottom: 50px;" class="table table-responsive table-striped border-dark">
+            <thead class="table-dark">
+                <tr>
+                    <th (click)="setSort('id')">ID <fa-icon *ngIf="sortColumn === 'id'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('firstName')">First Name <fa-icon *ngIf="sortColumn === 'firstName'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('lastName')">Last Name <fa-icon *ngIf="sortColumn === 'lastName'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('email')">Email <fa-icon *ngIf="sortColumn === 'email'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('age')">Age <fa-icon *ngIf="sortColumn === 'age'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('dob')">Date of Birth <fa-icon *ngIf="sortColumn === 'dob'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('salary')">Salary <fa-icon *ngIf="sortColumn === 'salary'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('address')">Address <fa-icon *ngIf="sortColumn === 'address'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('imageUrl')">Image URL <fa-icon *ngIf="sortColumn === 'imageUrl'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th (click)="setSort('contactNumber')">Contact Number <fa-icon *ngIf="sortColumn === 'contactNumber'" [icon]="sortDirection === 'asc' ? ['fas', 'sort-up'] : ['fas', 'sort-down']"></fa-icon></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of filteredEmployees | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                    <td>{{ employee.id }}</td>
+                    <td>{{ employee.firstName }}</td>
+                    <td>{{ employee.lastName }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.age }}</td>
+                    <td>{{ employee.dob }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{ employee.address }}</td>
+                    <td>{{ employee.imageUrl }}</td>
+                    <td>{{ employee.contactNumber }}</td>
+                    <td>
+                        <button (click)="deleteEmployee(employee.id)" class="btn btn-danger btn-sm" style="margin-left: 10px">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

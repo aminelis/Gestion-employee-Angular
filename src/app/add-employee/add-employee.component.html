@@ -1,0 +1,92 @@
+<form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" class="row g-3 form-container container-sm">
+    <div class="form-group col-md-6">
+        <label for="firstName"><b>First Name</b></label>
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="employee.firstName" name="firstName" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['firstName'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['firstName'].errors['required']">First Name is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="lastName"><b>Last Name</b></label>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="employee.lastName" name="lastName" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['lastName'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['lastName'].errors['required']">Last Name is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="email"><b>Email</b></label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="employee.email" name="email" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['email'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['email'].errors['required']">Email is required</div>
+            <div *ngIf="f.controls['email'].errors['email']">Invalid email format</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="salary"><b>Salary</b></label>
+        <input type="text" class="form-control" id="salary" [(ngModel)]="employee.salary" name="salary" required pattern="^[1-9]\d{2,}$" />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['salary'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['salary'].errors['required']">Salary is required</div>
+            <div *ngIf="f.controls['salary'].errors['pattern']">Salary must be a number, more than 3 digits, and not starting with zero</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="age"><b>Age</b></label>
+        <input type="number" class="form-control" id="age" [(ngModel)]="employee.age" name="age" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['age'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['age'].errors['required']">Age is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="dob"><b>Date of Birth</b></label>
+        <input type="date" class="form-control" id="dob" [(ngModel)]="employee.dob" name="dob" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['dob'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['dob'].errors['required']">Date of Birth is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="address"><b>Address</b></label>
+        <input type="text" class="form-control" id="address" [(ngModel)]="employee.address" name="address" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['address'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['address'].errors['required']">Address is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="contactNumber"><b>Contact Number</b></label>
+        <input type="text" class="form-control" id="contactNumber" [(ngModel)]="employee.contactNumber" name="contactNumber" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['contactNumber'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['contactNumber'].errors['required']">Contact Number is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        <label for="imageUrl"><b>Image URL</b></label>
+        <input type="text" class="form-control" id="imageUrl" [(ngModel)]="employee.imageUrl" name="imageUrl" required />
+        <!-- Validation messages -->
+        <div *ngIf="f.submitted && f.controls['imageUrl'].errors" class="invalid-feedback">
+            <div *ngIf="f.controls['imageUrl'].errors['required']">Image URL is required</div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <button class="btn btn-success full-width-button" type="submit" id="reg" [disabled]="f.invalid">Submit</button>
+    </div>
+
+    <div class="form-group col-md-6">
+        <button type="button" (click)="goToEmployeeList()" class="btn btn-danger full-width-button">Cancel</button>
+    </div>
+</form>
